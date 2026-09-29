@@ -166,7 +166,7 @@ if(typeof JSZip==='undefined'){st.textContent='読み込み中です。少し待
 b.disabled=true;var zip=new JSZip(),n=0;st.textContent='準備中… 0 / '+items.length;
 Promise.all(items.map(function(it){return fetch(it.src).then(function(r){if(!r.ok)throw new Error(it.name);return r.blob()}).then(function(bl){zip.file(it.name,bl);n++;st.textContent='準備中… '+n+' / '+items.length})}))
 .then(function(){return zip.generateAsync({type:'blob',compression:'STORE'})})
-.then(function(z){var a=document.createElement('a');a.href=URL.createObjectURL(z);a.download='遊びイチ素材_'+items.length+'本.zip';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000);
+.then(function(z){var a=document.createElement('a');a.href=URL.createObjectURL(z);a.download='遊びイチ素材_'+items.length+'本.zip';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},120000);
 st.textContent=items.length+'本をZIPにしました。iPadは「ファイル」アプリの「ダウンロード」に入ります。'})
 .catch(function(e){st.textContent='うまくいきませんでした（'+e.message+'）。1本ずつ「保存する」で保存してください。'})
 .then(function(){b.disabled=false})});
